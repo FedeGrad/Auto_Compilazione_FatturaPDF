@@ -38,5 +38,6 @@ public class Fattura {
 	private TipoDiPagamento pagamento;
 	@OneToMany(mappedBy = "fattura",cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private List<RigaFattura> rigaFattura = new ArrayList<RigaFattura>();
-
+	
+	private String aCaso; // da cancellare
 }
