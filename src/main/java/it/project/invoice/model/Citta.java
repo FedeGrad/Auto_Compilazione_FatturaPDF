@@ -1,6 +1,7 @@
 package it.project.invoice.model;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,19 +14,20 @@ import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-// commento xxxxxxxxx
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Citta {
 	
-	// commento michael
+// nuovo commento per federico
 	@Id
 	@NotNull
 	@Column(nullable = false)
 	private String cap;
 	private String nome;
+	private String federico;
 	private String provincia;
 	private String nazione;
 	@OneToMany(mappedBy = "citta", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
