@@ -21,7 +21,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Citta {
 	
-	// commento federico
+	
+	// commento michael
 	@Id
 	@NotNull
 	@Column(nullable = false)
