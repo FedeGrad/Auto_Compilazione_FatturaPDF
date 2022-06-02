@@ -31,6 +31,6 @@ public class Citta {
 	private String nazione;
 	@OneToMany(mappedBy = "citta", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private List<Cliente> clienti = new ArrayList<Cliente>();
-	private String xxxxx;
+	private String xxx; // ho cancellato due x dal nome
 
 }
