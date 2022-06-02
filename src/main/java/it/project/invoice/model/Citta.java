@@ -27,7 +27,6 @@ public class Citta {
 	@Column(nullable = false)
 	private String cap;
 	private String nome;
-	private String federico;
 	private String provincia;
 	private String nazione;
 	@OneToMany(mappedBy = "citta", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
