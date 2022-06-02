@@ -20,6 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Citta {
 	
+	// commento michael
 	@Id
 	@NotNull
 	@Column(nullable = false)
