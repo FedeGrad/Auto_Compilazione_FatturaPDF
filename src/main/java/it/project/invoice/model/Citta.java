@@ -21,13 +21,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Citta {
 	
-// nuovo commento per federico
+	// commento federico
 	@Id
 	@NotNull
 	@Column(nullable = false)
 	private String cap;
 	private String nome;
-	private String federico;
 	private String provincia;
 	private String nazione;
 	@OneToMany(mappedBy = "citta", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
