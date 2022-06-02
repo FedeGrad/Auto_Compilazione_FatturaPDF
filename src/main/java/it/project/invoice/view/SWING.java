@@ -69,30 +69,20 @@ public class SWING {
 		tabbedPane.addTab("Inserisci Fattura", null, inserisciFattura, null);
 		inserisciFattura.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(41, 44, 87, 31);
-		inserisciFattura.add(panel);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(169, 44, 87, 31);
-		inserisciFattura.add(panel_1);
-		
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_1.setBounds(502, 44, 447, 167);
 		inserisciFattura.add(tabbedPane_1);
 		
 		txtFatturaNumero = new JTextField();
 		txtFatturaNumero.setHorizontalAlignment(SwingConstants.CENTER);
-		txtFatturaNumero.setText("Fattura numero");
-		txtFatturaNumero.setBounds(41, 25, 87, 19);
+		txtFatturaNumero.setBounds(41, 44, 87, 41);
 		inserisciFattura.add(txtFatturaNumero);
 		txtFatturaNumero.setColumns(10);
 		
 		txtInData = new JTextField();
 		txtInData.setHorizontalAlignment(SwingConstants.CENTER);
-		txtInData.setText("In data");
 		txtInData.setColumns(10);
-		txtInData.setBounds(169, 25, 87, 19);
+		txtInData.setBounds(168, 44, 87, 41);
 		inserisciFattura.add(txtInData);
 		
 		table = new JTable();
@@ -112,15 +102,31 @@ public class SWING {
 				{null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
 			},
 			new String[] {
 				"New column", "New column", "New column", "New column", "New column", "New column", "New column"
 			}
 		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(53);
+		table.getColumnModel().getColumn(0).setPreferredWidth(64);
 		table.getColumnModel().getColumn(1).setPreferredWidth(103);
-		table.setBounds(41, 212, 910, 329);
+		table.setBounds(26, 212, 925, 329);
 		inserisciFattura.add(table);
+		
+		JLabel lblNewLabel = new JLabel("Fattura numero");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(41, 25, 87, 13);
+		inserisciFattura.add(lblNewLabel);
+		
+		JLabel lblInData = new JLabel("In data");
+		lblInData.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInData.setBounds(168, 25, 87, 13);
+		inserisciFattura.add(lblInData);
 		
 		JPanel modificaFattura = new JPanel();
 		tabbedPane.addTab("Modifica Fattura", null, modificaFattura, null);
