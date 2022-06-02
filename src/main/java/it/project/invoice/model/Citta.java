@@ -21,8 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Citta {
 	
-	
-	// commento michael
+	// commento federico
 	@Id
 	@NotNull
 	@Column(nullable = false)
@@ -32,6 +31,5 @@ public class Citta {
 	private String nazione;
 	@OneToMany(mappedBy = "citta", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private List<Cliente> clienti = new ArrayList<Cliente>();
-	privare String aCaso;
 
 }
