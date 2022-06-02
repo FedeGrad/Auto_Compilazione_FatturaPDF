@@ -1,7 +1,5 @@
 package it.project.invoice.model;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,20 +21,19 @@ import lombok.Setter;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Fattura {
-
+public class RigaFattura {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(value = AccessLevel.NONE)
 	private Long id;
-	private LocalDate data;
+	private String descrizione;
+	private int quantita;
+	private double prezzo;
 	@ManyToOne
-	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
-	private Cliente cliente;
-	@ManyToOne
-	@JoinColumn(name = "id_pagamento", referencedColumnName = "id")
-	private TipoDiPagamento pagamento;
-	@OneToMany(mappedBy = "fattura",cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	private List<RigaFattura> rigaFattura = new ArrayList<RigaFattura>();
+	@JoinColumn(name = "id_fattura", referencedColumnName = "id")
+	private Fattura fatture;
+	
+
 
 }
