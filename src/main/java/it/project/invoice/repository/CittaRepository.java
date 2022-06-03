@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import it.progetto.fattura.model.Citta;
-import it.progetto.fattura.model.Cliente;
+import it.project.invoice.model.Citta;
+
 
 public interface CittaRepository extends CrudRepository<Citta, String> {
 

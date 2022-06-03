@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import it.progetto.fattura.model.TipoDiPagamento;
-import it.progetto.fattura.model.Tipologia;
+import it.project.invoice.model.TipoDiPagamento;
+
 
 public interface TipoDiPagamentoRepository extends CrudRepository<TipoDiPagamento, Long> {
 	

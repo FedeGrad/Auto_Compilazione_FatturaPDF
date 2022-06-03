@@ -7,14 +7,12 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.progetto.fattura.dto.ClienteDTO;
-import it.progetto.fattura.dto.FatturaDTO;
-import it.progetto.fattura.exception.ElementAlreadyPresentException;
-import it.progetto.fattura.model.Citta;
-import it.progetto.fattura.model.Cliente;
-import it.progetto.fattura.model.Fattura;
-import it.progetto.fattura.repository.ClienteRepository;
-import it.progetto.fattura.repository.FatturaRepository;
+import it.project.invoice.dto.FatturaDTO;
+import it.project.invoice.exception.ElementAlreadyPresentException;
+import it.project.invoice.model.Citta;
+import it.project.invoice.model.Fattura;
+import it.project.invoice.repository.ClienteRepository;
+import it.project.invoice.repository.FatturaRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Service

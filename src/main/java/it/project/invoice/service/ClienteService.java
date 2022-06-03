@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
 
-import it.progetto.fattura.dto.ClienteDTO;
-import it.progetto.fattura.exception.ElementAlreadyPresentException;
-import it.progetto.fattura.model.Citta;
-import it.progetto.fattura.model.Cliente;
-import it.progetto.fattura.model.Fattura;
-import it.progetto.fattura.repository.CittaRepository;
-import it.progetto.fattura.repository.ClienteRepository;
+import it.project.invoice.dto.ClienteDTO;
+import it.project.invoice.exception.ElementAlreadyPresentException;
+import it.project.invoice.exception.NotFoundException;
+import it.project.invoice.model.Citta;
+import it.project.invoice.model.Cliente;
+import it.project.invoice.model.Fattura;
+import it.project.invoice.repository.CittaRepository;
+import it.project.invoice.repository.ClienteRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -66,7 +66,7 @@ public class ClienteService {
 		}
 	}
 
-	public void eliminaCliente(Long id) {
+	public void eliminaCliente(Long id) throws NotFoundException {
 		if (clienteRepo.existsById(id)) {
 			Cliente cli = clienteRepo.findById(id).get();
 			log.info("Il cliente" + cli.getCognome() + " è stato eliminato");

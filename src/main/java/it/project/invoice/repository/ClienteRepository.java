@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import it.progetto.fattura.model.Citta;
-import it.progetto.fattura.model.Cliente;
+import it.project.invoice.model.Citta;
+import it.project.invoice.model.Cliente;
+
+
 
 public interface ClienteRepository extends CrudRepository<Cliente, Long> {
 	

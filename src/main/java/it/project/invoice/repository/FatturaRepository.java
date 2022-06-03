@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import it.progetto.fattura.model.Fattura;
+import it.project.invoice.model.Fattura;
+
 
 public interface FatturaRepository extends CrudRepository<Fattura, Long> {
 	
