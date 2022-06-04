@@ -37,10 +37,10 @@ public class ClienteService {
 			log.info("Il Cliente " + cliente.getNome() + " " + cliente.getCognome() + " è stato salvato");
 			Citta cittaTrovata = cittaServ.associaCitta(dto.getCittaNome());
 			cliente.setCitta(cittaTrovata);
-			ArrayList<Fattura> lista = (ArrayList<Fattura>) fatturaServ.associaFattura(dto.getIdFatture());
-			for (Fattura fattura : lista) {
-				cliente.getFatture().add(fattura);
-			}
+//			ArrayList<Fattura> lista = (ArrayList<Fattura>) fatturaServ.associaFattura(dto.getIdFatture());
+//			for (Fattura fattura : lista) {
+//				cliente.getFatture().add(fattura);
+//			}
 			clienteRepo.save(cliente);
 		} else {
 			throw new ElementAlreadyPresentException(
@@ -56,10 +56,10 @@ public class ClienteService {
 			log.info("Il Cliente con l'id" + dto.getIdFatture() + ", è stato modificato");
 			Citta cittaTrovata = cittaServ.associaCitta(dto.getCittaNome());
 			cliente.setCitta(cittaTrovata);
-			ArrayList<Fattura> lista = (ArrayList<Fattura>) fatturaServ.associaFattura(dto.getIdFatture());
-			for (Fattura fattura : lista) {
-				cliente.getFatture().add(fattura);
-			}
+//			ArrayList<Fattura> lista = (ArrayList<Fattura>) fatturaServ.associaFattura(dto.getIdFatture());
+//			for (Fattura fattura : lista) {
+//				cliente.getFatture().add(fattura);
+//			}
 			clienteRepo.save(cliente);
 		} else {
 			throw new NotFoundException("Il cliente con l'id " + dto.getId_cliente() + " non è presente nel sistema");

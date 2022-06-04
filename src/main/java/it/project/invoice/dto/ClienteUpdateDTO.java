@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClienteDTO {
+public class ClienteUpdateDTO {
 	
+	private Long id_cliente;
 	//controllo cf
 	private String cf;
 	private String nome;

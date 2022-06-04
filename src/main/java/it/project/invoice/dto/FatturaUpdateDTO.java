@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FatturaDTO {
+public class FatturaUpdateDTO {
 	
+	private Long idFattura;
 	private String LocalDate;
 	private Long idCliente;
 	private String idRigaFattura;
