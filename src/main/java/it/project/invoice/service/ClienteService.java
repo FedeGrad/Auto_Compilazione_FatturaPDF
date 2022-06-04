@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.project.invoice.dto.ClienteDTO;
+import it.project.invoice.dto.ClienteUpdateDTO;
 import it.project.invoice.exception.ElementAlreadyPresentException;
 import it.project.invoice.exception.NotFoundException;
 import it.project.invoice.model.Citta;
 import it.project.invoice.model.Cliente;
-import it.project.invoice.model.Fattura;
 import it.project.invoice.repository.CittaRepository;
 import it.project.invoice.repository.ClienteRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -48,12 +48,12 @@ public class ClienteService {
 		}
 	}
 
-	public void modificaCliente(ClienteDTO dto) throws ElementAlreadyPresentException, NotFoundException {
+	public void modificaCliente(ClienteUpdateDTO dto) throws ElementAlreadyPresentException, NotFoundException {
 		if (clienteRepo.existsById(dto.getId_cliente())) {
 			Cliente cliente = clienteRepo.findById(dto.getId_cliente()).get();
 			BeanUtils.copyProperties(dto, cliente);
 			clienteRepo.save(cliente);
-			log.info("Il Cliente con l'id" + dto.getIdFatture() + ", è stato modificato");
+			log.info("Il Cliente con l'id" + dto.getId_cliente() + ", è stato modificato");
 			Citta cittaTrovata = cittaServ.associaCitta(dto.getCittaNome());
 			cliente.setCitta(cittaTrovata);
 //			ArrayList<Fattura> lista = (ArrayList<Fattura>) fatturaServ.associaFattura(dto.getIdFatture());
