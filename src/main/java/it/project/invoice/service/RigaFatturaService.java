@@ -6,13 +6,8 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
 
-import it.progetto.fattura.dto.FatturaRigheDTO;
-import it.progetto.fattura.exception.ElementAlreadyPresentException;
-import it.progetto.fattura.model.Fattura;
-import it.progetto.fattura.model.RigaFattura;
-import it.progetto.fattura.repository.RigaFatturaRepository;
+import it.project.invoice.repository.RigaFatturaRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Service

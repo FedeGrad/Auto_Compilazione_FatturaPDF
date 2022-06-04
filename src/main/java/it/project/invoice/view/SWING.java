@@ -112,7 +112,14 @@ public class SWING {
 			new String[] {
 				"New column", "New column", "New column", "New column", "New column", "New column", "New column"
 			}
-		));
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, Object.class, Object.class, Object.class, Object.class, Object.class, Object.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
 		table.getColumnModel().getColumn(0).setPreferredWidth(64);
 		table.getColumnModel().getColumn(1).setPreferredWidth(103);
 		table.setBounds(26, 212, 925, 329);

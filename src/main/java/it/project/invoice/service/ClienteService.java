@@ -29,7 +29,7 @@ public class ClienteService {
 	@Autowired
 	CittaService cittaServ;
 
-	public void inserisciCliente(ClienteDTO dto) throws ElementAlreadyPresentException {
+	public void inserisciCliente(ClienteDTO dto) throws ElementAlreadyPresentException, NotFoundException {
 		Cliente cliente = new Cliente();
 		if (!clienteRepo.existsByCf(dto.getCf())) {
 			BeanUtils.copyProperties(dto, cliente);
@@ -48,7 +48,7 @@ public class ClienteService {
 		}
 	}
 
-	public void modificaCliente(ClienteDTO dto) throws ElementAlreadyPresentException {
+	public void modificaCliente(ClienteDTO dto) throws ElementAlreadyPresentException, NotFoundException {
 		if (clienteRepo.existsById(dto.getId_cliente())) {
 			Cliente cliente = clienteRepo.findById(dto.getId_cliente()).get();
 			BeanUtils.copyProperties(dto, cliente);

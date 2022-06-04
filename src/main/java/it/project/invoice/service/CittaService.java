@@ -1,14 +1,13 @@
 package it.project.invoice.service;
-
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import it.project.invoice.dto.CittaDTO;
 import it.project.invoice.exception.ElementAlreadyPresentException;
+import it.project.invoice.exception.NotFoundException;
 import it.project.invoice.model.Citta;
 import it.project.invoice.repository.CittaRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +27,7 @@ public class CittaService {
 		}
 	}
 
-	public Citta associaCitta(String nomeCitta) {
+	public Citta associaCitta(String nomeCitta) throws it.project.invoice.exception.NotFoundException {
 		if (cittaRepo.existsByNome(nomeCitta)) {
 			Citta citta = cittaRepo.findByNome(nomeCitta);
 			return citta;
@@ -48,7 +47,7 @@ public class CittaService {
 		}
 	}
 
-	public void modificaCitta(CittaDTO dto) {
+	public void modificaCitta(CittaDTO dto) throws NotFoundException {
 		if(cittaRepo.existsByNome(dto.getNome())){
 			Citta citta = cittaRepo.findByNome(dto.getNome());
 			BeanUtils.copyProperties(dto, citta);
@@ -59,7 +58,7 @@ public class CittaService {
 		}
 	}
 
-	public void eliminaCitta(String nome) {
+	public void eliminaCitta(String nome) throws NotFoundException {
 		if(cittaRepo.existsByNome(nome)) {
 			cittaRepo.deleteByNome(nome);
 		} else {
