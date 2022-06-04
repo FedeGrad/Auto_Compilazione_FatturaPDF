@@ -7,6 +7,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.project.invoice.dto.FatturaRigheDTO;
+import it.project.invoice.exception.ElementAlreadyPresentException;
+import it.project.invoice.exception.NotFoundException;
+import it.project.invoice.model.Fattura;
+import it.project.invoice.model.RigaFattura;
 import it.project.invoice.repository.RigaFatturaRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,7 +46,7 @@ public class RigaFatturaService {
 		rigaFattRepo.save(rigaFattura);
 	}
 
-	public void modificaRigheFattura(FatturaRigheDTO dto) throws ElementAlreadyPresentException {
+	public void modificaRigheFattura(FatturaRigheDTO dto) throws ElementAlreadyPresentException, NotFoundException {
 		if (rigaFattRepo.existsById(dto.getIdRigaFattura())) {
 			RigaFattura fattura_riga = rigaFattRepo.findById(dto.getIdRigaFattura()).get();
 			BeanUtils.copyProperties(dto, fattura_riga);
@@ -56,7 +61,7 @@ public class RigaFatturaService {
 		}
 	}
 
-	public void eliminaRigheFattura(Long id) {
+	public void eliminaRigheFattura(Long id) throws NotFoundException {
 		if (rigaFattRepo.existsById(id)) {
 			log.info("La fattura n°" + id + " è stata eliminata");
 			rigaFattRepo.deleteById(id);
