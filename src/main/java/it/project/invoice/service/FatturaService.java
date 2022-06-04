@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import it.project.invoice.dto.FatturaDTO;
 import it.project.invoice.exception.ElementAlreadyPresentException;
-import it.project.invoice.model.Citta;
 import it.project.invoice.model.Fattura;
+import it.project.invoice.model.RigaFattura;
 import it.project.invoice.repository.ClienteRepository;
 import it.project.invoice.repository.FatturaRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -41,15 +41,10 @@ public class FatturaService {
 	public void inserisciFattura(FatturaDTO dto) throws ElementAlreadyPresentException {
 		Fattura fattura = new Fattura();
 		BeanUtils.copyProperties(dto, fattura);
+		RigaFattura riga = new RigaFattura();
+		
 		fatturaRepo.save(fattura);
 		log.info("La Fattura è stata salvata");
-		Citta cittaTrovata = cittaServ.associaCitta(dto.getCittaNome());
-		cliente.setCitta(cittaTrovata);
-		ArrayList<Fattura> lista = (ArrayList<Fattura>) fatturaServ.associaFattura(dto.getIdFatture());
-		for (Fattura fattura : lista) {
-			cliente.getFatture().add(fattura);
-		}
-		clienteRepo.save(cliente);
 	}
 
 }

@@ -12,7 +12,10 @@ import it.project.invoice.exception.ElementAlreadyPresentException;
 import it.project.invoice.exception.NotFoundException;
 import it.project.invoice.model.Fattura;
 import it.project.invoice.model.RigaFattura;
+import it.project.invoice.model.TipoDiPagamento;
+import it.project.invoice.repository.ArticoloRepository;
 import it.project.invoice.repository.RigaFatturaRepository;
+import it.project.invoice.repository.TipoDiPagamentoRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -21,11 +24,16 @@ public class RigaFatturaService {
 
 	@Autowired
 	RigaFatturaRepository rigaFattRepo;
-	
 	@Autowired
-	FatturaService fatturaServ;
+	ArticoloRepository articoloRepo;
+	@Autowired
+	TipoDiPagamentoRepository tipoPagamRepo;
+	
 
-	public List<RigaFattura> associaRigheFattura(String stringaIdRigaFattura) {
+	public List<RigaFattura> associaRigheFattura(List<String> tipoPagamento, List<String> nomeProdotto) {
+		for (String string : tipoPagamento) {
+			TipoDiPagamento tipo = tipoPagamRepo.fi
+		}
 	String[] righeFattura = stringaIdRigaFattura.split(",");
 	List<RigaFattura> righeFatturaOttenute = new ArrayList<RigaFattura>();
 	for (int i=0; i<righeFattura.length; i++) {
@@ -40,9 +48,6 @@ public class RigaFatturaService {
 		BeanUtils.copyProperties(dto, rigaFattura);
 		rigaFattRepo.save(rigaFattura);
 		log.info("La riga è stata salvata");
-		String id = Long.toString(dto.getIdFattura());
-		ArrayList<Fattura> lista = (ArrayList<Fattura>) fatturaServ.associaFattura(id);
-		rigaFattura.setFatture(lista.get(0));
 		rigaFattRepo.save(rigaFattura);
 	}
 
@@ -52,9 +57,6 @@ public class RigaFatturaService {
 			BeanUtils.copyProperties(dto, fattura_riga);
 			rigaFattRepo.save(fattura_riga);
 			log.info("La riga fattura con l'id " + dto.getIdRigaFattura() + " è stata modificata");
-			String id = Long.toString(dto.getIdFattura());
-			ArrayList<Fattura> lista = (ArrayList<Fattura>) fatturaServ.associaFattura(id);
-			fattura_riga.setFatture(lista.get(0));
 			rigaFattRepo.save(fattura_riga);
 		} else {
 			throw new NotFoundException("Il Cliente con l'id " + dto.getIdFattura() + " non è presente nel sistema");
