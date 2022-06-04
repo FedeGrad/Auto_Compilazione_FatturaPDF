@@ -29,7 +29,7 @@ public class Fattura {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(value = AccessLevel.NONE)
 	private Long id;
-	private LocalDate data;
+	private LocalDate dataFattura;
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
 	private Cliente cliente;
