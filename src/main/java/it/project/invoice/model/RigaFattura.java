@@ -27,9 +27,13 @@ public class RigaFattura {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(value = AccessLevel.NONE)
 	private Long id;
+	private Articolo articolo;
 	private String descrizione;
 	private int quantita;
-	private double prezzo;
+	private double prezzoUnitario;
+	private float sconto;
+	private double importo;
+	private Iva IVA;
 	@ManyToOne
 	@JoinColumn(name = "id_fattura", referencedColumnName = "id")
 	private Fattura fatture;
