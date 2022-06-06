@@ -37,8 +37,10 @@ import java.io.IOException;
 import java.util.Map;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTabbedPane;
+import javax.swing.JPanel;
 
-public class PdfGenerator {
+public class PdfGenerator2 {
 	
 	@Autowired
 	FatturaRepository fatturaRepo;
@@ -55,7 +57,7 @@ public class PdfGenerator {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PdfGenerator window = new PdfGenerator();
+					PdfGenerator2 window = new PdfGenerator2();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +66,7 @@ public class PdfGenerator {
 		});
 	}
 
-	public PdfGenerator() throws IOException {
+	public PdfGenerator2() throws IOException {
 		initialize();
 	}
 
@@ -79,21 +81,21 @@ public class PdfGenerator {
 		frame.getContentPane().setLayout(null);
 		
 		Label label_1_2 = new Label("Descrizione servizio:");
-		label_1_2.setBounds(25, 219, 101, 16);
+		label_1_2.setBounds(522, 229, 101, 16);
 		label_1_2.setForeground(Color.BLACK);
 		label_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frame.getContentPane().add(label_1_2);
 		
 		JTextPane ID = new JTextPane();
-		ID.setBounds(159, 70, 47, 16);
+		ID.setBounds(929, 70, 47, 16);
 		frame.getContentPane().add(ID);
 		
 		JButton btnNewButton = new JButton("Genera PDF");
-		btnNewButton.setBounds(252, 407, 117, 29);
+		btnNewButton.setBounds(820, 494, 117, 29);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnChiudi = new JButton("Chiudi");
-		btnChiudi.setBounds(381, 407, 101, 29);
+		btnChiudi.setBounds(971, 494, 101, 29);
 		btnChiudi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -102,108 +104,108 @@ public class PdfGenerator {
 		frame.getContentPane().add(btnChiudi);
 		
 		Label label = new Label("ID cliente");
-		label.setBounds(57, 70, 61, 16);
+		label.setBounds(852, 70, 61, 16);
 		label.setForeground(Color.BLACK);
 		label.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frame.getContentPane().add(label);
 		
 		Label label_1 = new Label("Partita IVA");
-		label_1.setBounds(25, 98, 101, 16);
+		label_1.setBounds(836, 112, 101, 16);
 		label_1.setForeground(Color.BLACK);
 		label_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frame.getContentPane().add(label_1);
 		
 		JTextPane PIVA = new JTextPane();
-		PIVA.setBounds(159, 98, 141, 16);
+		PIVA.setBounds(931, 112, 141, 16);
 		frame.getContentPane().add(PIVA);
 		
 		JTextPane RAGIONE_SOCIALE = new JTextPane();
-		RAGIONE_SOCIALE.setBounds(159, 129, 225, 16);
+		RAGIONE_SOCIALE.setBounds(858, 157, 225, 16);
 		frame.getContentPane().add(RAGIONE_SOCIALE);
 		
 		JTextPane INDIRIZZO = new JTextPane();
-		INDIRIZZO.setBounds(159, 157, 225, 16);
+		INDIRIZZO.setBounds(617, 203, 225, 16);
 		frame.getContentPane().add(INDIRIZZO);
 		
 		JTextPane CITTA = new JTextPane();
-		CITTA.setBounds(396, 157, 141, 16);
+		CITTA.setBounds(867, 203, 141, 16);
 		frame.getContentPane().add(CITTA);
 		
 		JTextPane CAP = new JTextPane();
-		CAP.setBounds(548, 157, 75, 16);
+		CAP.setBounds(1018, 203, 75, 16);
 		frame.getContentPane().add(CAP);
 		
 		Label label_1_1 = new Label("Dati cliente:");
-		label_1_1.setBounds(25, 129, 56, 15);
+		label_1_1.setBounds(787, 158, 56, 15);
 		label_1_1.setForeground(Color.BLACK);
 		label_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frame.getContentPane().add(label_1_1);
 		
 		JTextPane DESCRIZIONE = new JTextPane();
-		DESCRIZIONE.setBounds(159, 219, 464, 16);
+		DESCRIZIONE.setBounds(629, 229, 464, 16);
 		frame.getContentPane().add(DESCRIZIONE);
 		
 		JTextPane QUANTITA = new JTextPane();
-		QUANTITA.setBounds(159, 247, 61, 16);
+		QUANTITA.setBounds(787, 304, 61, 16);
 		QUANTITA.setContentType("application/octet-stream");
 		frame.getContentPane().add(QUANTITA);
 		
 		Label label_1_2_1 = new Label("Quantità:");
-		label_1_2_1.setBounds(25, 247, 101, 16);
+		label_1_2_1.setBounds(703, 304, 101, 16);
 		label_1_2_1.setForeground(Color.BLACK);
 		label_1_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frame.getContentPane().add(label_1_2_1);
 		
 		Label label_1_2_1_1 = new Label("Importo unitario:");
-		label_1_2_1_1.setBounds(251, 247, 101, 16);
+		label_1_2_1_1.setBounds(596, 263, 101, 16);
 		label_1_2_1_1.setForeground(Color.BLACK);
 		label_1_2_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frame.getContentPane().add(label_1_2_1_1);
 		
 		Label label_1_2_1_1_1 = new Label("IVA");
-		label_1_2_1_1_1.setBounds(477, 282, 47, 16);
+		label_1_2_1_1_1.setBounds(906, 282, 47, 16);
 		label_1_2_1_1_1.setForeground(Color.BLACK);
 		label_1_2_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frame.getContentPane().add(label_1_2_1_1_1);
 		
 		JTextPane IMPORTO_IVA = new JTextPane();
-		IMPORTO_IVA.setBounds(580, 319, 83, 16);
+		IMPORTO_IVA.setBounds(989, 357, 83, 16);
 		IMPORTO_IVA.setContentType("application/octet-stream");
 		IMPORTO_IVA.setEditable(false);
 		frame.getContentPane().add(IMPORTO_IVA);
 	
 		Label label_1_2_1_1_1_1 = new Label("Importo IVA:");
-		label_1_2_1_1_1_1.setBounds(477, 319, 92, 16);
+		label_1_2_1_1_1_1.setBounds(884, 357, 92, 16);
 		label_1_2_1_1_1_1.setForeground(Color.BLACK);
 		label_1_2_1_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frame.getContentPane().add(label_1_2_1_1_1_1);
 		
 		Label label_1_2_1_1_1_1_1 = new Label("Totale:");
-		label_1_2_1_1_1_1_1.setBounds(477, 322, 47, 16);
+		label_1_2_1_1_1_1_1.setBounds(906, 319, 47, 16);
 		label_1_2_1_1_1_1_1.setForeground(Color.BLACK);
 		label_1_2_1_1_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frame.getContentPane().add(label_1_2_1_1_1_1_1);
 		
 		//final JTextPane IMPORTO_TOTALE = new JTextPane();
 		final JTextField TOTALE = new JTextField("0");
-		TOTALE.setBounds(580, 357, 83, 16);
+		TOTALE.setBounds(1010, 413, 83, 16);
 		TOTALE.setEditable(false);
 		frame.getContentPane().add(TOTALE);
 		
 		JTextPane IMPORTO_TOTALE = new JTextPane();
-		IMPORTO_TOTALE.setBounds(580, 247, 83, 16);
+		IMPORTO_TOTALE.setBounds(1000, 282, 83, 16);
 		IMPORTO_TOTALE.setEditable(false);
 		IMPORTO_TOTALE.setContentType("application/octet-stream");
 		frame.getContentPane().add(IMPORTO_TOTALE);
 		
 		Label label_1_2_1_1_2 = new Label("Importo:");
-		label_1_2_1_1_2.setBounds(468, 247, 101, 16);
+		label_1_2_1_1_2.setBounds(781, 263, 101, 16);
 		label_1_2_1_1_2.setForeground(Color.BLACK);
 		label_1_2_1_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frame.getContentPane().add(label_1_2_1_1_2);
 		
 		JTextPane IMPORTO = new JTextPane();
-		IMPORTO.setBounds(385, 247, 61, 16);
+		IMPORTO.setBounds(703, 263, 61, 16);
 		IMPORTO.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -219,7 +221,7 @@ public class PdfGenerator {
 		frame.getContentPane().add(IMPORTO);
 		
 		JTextPane PERCENTUALE_IVA = new JTextPane();
-		PERCENTUALE_IVA.setBounds(602, 282, 61, 16);
+		PERCENTUALE_IVA.setBounds(1022, 319, 61, 16);
 		PERCENTUALE_IVA.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -240,10 +242,30 @@ public class PdfGenerator {
 		frame.getContentPane().add(PERCENTUALE_IVA);
 		
 		Label label_1_2_1_1_1_1_2 = new Label("Importo totale:");
-		label_1_2_1_1_1_1_2.setBounds(477, 357, 92, 16);
+		label_1_2_1_1_1_1_2.setBounds(884, 407, 92, 16);
 		label_1_2_1_1_1_1_2.setForeground(Color.BLACK);
 		label_1_2_1_1_1_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frame.getContentPane().add(label_1_2_1_1_1_1_2);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(20, 31, 492, 492);
+		frame.getContentPane().add(tabbedPane);
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("New tab", null, panel, null);
+		
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_1, null);
+		
+		JPanel panel_2 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_2, null);
+		panel_2.setLayout(null);
+		
+		Label label_2 = new Label("ID cliente");
+		label_2.setBounds(31, 10, 62, 22);
+		label_2.setForeground(Color.BLACK);
+		label_2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		panel_2.add(label_2);
 		
 		
 		PdfDocument pdf = new PdfDocument(new PdfReader(SRC), new PdfWriter(DEST));
@@ -324,6 +346,4 @@ public class PdfGenerator {
 		*/
 		
 	}
-	
-
 }
