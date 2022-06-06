@@ -8,8 +8,11 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 
-
-
+import com.itextpdf.forms.PdfAcroForm;
+import com.itextpdf.forms.fields.PdfFormField;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.kernel.pdf.PdfWriter;
 
 import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
@@ -55,7 +58,6 @@ public class PdfGenerator {
 	public PdfGenerator() throws IOException {
 		initialize();
 	}
-
 
 	@SuppressWarnings("deprecation")
 	private void initialize() throws IOException {
