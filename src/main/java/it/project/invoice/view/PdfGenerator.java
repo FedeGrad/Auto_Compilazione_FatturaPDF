@@ -1,4 +1,4 @@
-package it.project.invoice.view;
+package it.project.pdf;
 
 import java.awt.EventQueue;
 
@@ -7,6 +7,12 @@ import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
+
+import com.itextpdf.forms.PdfAcroForm;
+import com.itextpdf.forms.fields.PdfFormField;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.kernel.pdf.PdfWriter;
 
 import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
@@ -21,13 +27,22 @@ import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PdfGenerator {
 
 	private JFrame frame;
 	
+	public static final String SRC = "src/pdf/provapdf.pdf";
+	public static final String DEST = "src/pdf/fattura.pdf";
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -40,13 +55,13 @@ public class PdfGenerator {
 		});
 	}
 
-	
-	public PdfGenerator() {
+	public PdfGenerator() throws IOException {
 		initialize();
 	}
 
 
-	private void initialize() {
+	@SuppressWarnings("deprecation")
+	private void initialize() throws IOException {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 692, 508);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,6 +85,11 @@ public class PdfGenerator {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnChiudi = new JButton("Chiudi");
+		btnChiudi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		btnChiudi.setBounds(381, 407, 101, 29);
 		frame.getContentPane().add(btnChiudi);
 		
@@ -165,6 +185,7 @@ public class PdfGenerator {
 		frame.getContentPane().add(TOTALE);
 		
 		JTextPane IMPORTO_TOTALE = new JTextPane();
+		IMPORTO_TOTALE.setEditable(false);
 		IMPORTO_TOTALE.setContentType("application/octet-stream");
 		IMPORTO_TOTALE.setBounds(580, 247, 83, 16);
 		frame.getContentPane().add(IMPORTO_TOTALE);
@@ -184,6 +205,7 @@ public class PdfGenerator {
 				double importoTotale = (quantita * valoreUnitario);
 				String s = Double.toString(importoTotale);
 				IMPORTO_TOTALE.setText(s);
+				
 			}
 		});
 		IMPORTO.setContentType("application/octet-stream");
@@ -217,8 +239,27 @@ public class PdfGenerator {
 		label_1_2_1_1_1_1_2.setBounds(477, 357, 92, 16);
 		frame.getContentPane().add(label_1_2_1_1_1_1_2);
 		
-
 		
+		PdfDocument pdf = new PdfDocument(new PdfReader(SRC), new PdfWriter(DEST));
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PdfAcroForm form = PdfAcroForm.getAcroForm(pdf, true);
+				Map<String, PdfFormField> fields = form.getFormFields();
+				fields.get("numero_fattura").setValue(ID.getText());
+				fields.get("cliente").setValue(RAGIONE_SOCIALE.getText());
+				fields.get("servizio").setValue(DESCRIZIONE.getText());
+				fields.get("prezzo").setValue(IMPORTO.getText());
+				fields.get("quantita").setValue(QUANTITA.getText());
+				fields.get("prezzo_parziale").setValue(IMPORTO_TOTALE.getText());
+				fields.get("iva").setValue(PERCENTUALE_IVA.getText());
+//				fields.get("importo_iva").setValue(IMPORTO_IVA.getText());
+//				fields.get("importo_totale").setValue(TOTALE.getText());
+				pdf.close();
+			}
+		});
+		
+
 		/*
 		 DocumentFilter df = new DocumentFilter() {
 	            @Override
@@ -277,5 +318,6 @@ public class PdfGenerator {
 		*/
 		
 	}
-}
+	
 
+}
