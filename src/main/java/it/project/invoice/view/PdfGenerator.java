@@ -1,4 +1,4 @@
-package it.project.pdf;
+package it.project.invoice.view;
 
 import java.awt.EventQueue;
 
@@ -8,11 +8,8 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 
-import com.itextpdf.forms.PdfAcroForm;
-import com.itextpdf.forms.fields.PdfFormField;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfReader;
-import com.itextpdf.kernel.pdf.PdfWriter;
+
+
 
 import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
