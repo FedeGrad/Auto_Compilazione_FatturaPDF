@@ -99,11 +99,6 @@ public class SWING {
 				{null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
 			},
 			new String[] {
 				"Cod. Art.", "Descrizione", "Q.ta", "Prezzo Unitario", "Sconto", "Importo", "IVA"
@@ -136,37 +131,37 @@ public class SWING {
 		lblInData.setBounds(168, 25, 87, 13);
 		inserisciFattura.add(lblInData);
 		
-		JLabel lblNewLabel_1 = new JLabel("Fattura numero");
+		JLabel lblNewLabel_1 = new JLabel("Cod. Articolo");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(24, 222, 104, 13);
 		inserisciFattura.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Fattura numero");
+		JLabel lblNewLabel_1_1 = new JLabel("Descrizione");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1.setBounds(180, 222, 104, 13);
 		inserisciFattura.add(lblNewLabel_1_1);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Fattura numero");
+		JLabel lblNewLabel_1_2 = new JLabel("Quantità");
 		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_2.setBounds(348, 222, 104, 13);
 		inserisciFattura.add(lblNewLabel_1_2);
 		
-		JLabel lblNewLabel_1_3 = new JLabel("Fattura numero");
+		JLabel lblNewLabel_1_3 = new JLabel("Prezzo unitario");
 		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_3.setBounds(469, 222, 104, 13);
 		inserisciFattura.add(lblNewLabel_1_3);
 		
-		JLabel lblNewLabel_1_4 = new JLabel("Fattura numero");
+		JLabel lblNewLabel_1_4 = new JLabel("Sconto");
 		lblNewLabel_1_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_4.setBounds(592, 221, 104, 13);
 		inserisciFattura.add(lblNewLabel_1_4);
 		
-		JLabel lblNewLabel_1_5 = new JLabel("Fattura numero");
+		JLabel lblNewLabel_1_5 = new JLabel("Importo");
 		lblNewLabel_1_5.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_5.setBounds(715, 221, 104, 13);
 		inserisciFattura.add(lblNewLabel_1_5);
 		
-		JLabel lblNewLabel_1_6 = new JLabel("Fattura numero");
+		JLabel lblNewLabel_1_6 = new JLabel("IVA");
 		lblNewLabel_1_6.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_6.setBounds(845, 221, 104, 13);
 		inserisciFattura.add(lblNewLabel_1_6);
