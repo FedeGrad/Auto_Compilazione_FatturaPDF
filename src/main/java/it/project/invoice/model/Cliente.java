@@ -34,10 +34,11 @@ public class Cliente {
 	private Long id;
 	@NotNull
 	@Column(nullable = false)
-	private String cf;
+	private String pIVA;
 	private String nome;
 	private String cognome;
 	private String indirizzo;
+	private String civico;
 	@ManyToOne
 	@JoinColumn(name = "id_citta", referencedColumnName = "cap")
 	private Citta citta;

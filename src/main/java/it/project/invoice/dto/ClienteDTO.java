@@ -9,12 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ClienteDTO {
 	
-	//controllo cf
-	private String cf;
+	private String pIVA;
 	private String nome;
 	private String cognome;
 	private String indirizzo;
 	private String cittaNome;
-//	private String idFatture;
 	
 }

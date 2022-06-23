@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,6 +32,11 @@ public class Fattura {
 	@Setter(value = AccessLevel.NONE)
 	private Long id;
 	private LocalDate dataFattura;
+	private String numeroFattura;
+	@Enumerated(EnumType.STRING)
+	private Iva IVA;
+	private double totaleParziale;
+	private double totaleGenerale;
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
 	private Cliente cliente;
@@ -39,5 +46,4 @@ public class Fattura {
 	@OneToMany(mappedBy = "fattura",cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private List<RigaFattura> rigaFattura = new ArrayList<RigaFattura>();
 	
-	private String aCaso; // da cancellare
 }

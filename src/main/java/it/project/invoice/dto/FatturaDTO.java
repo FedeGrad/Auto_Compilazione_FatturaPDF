@@ -25,11 +25,15 @@ static final String DATE_PATTERN = "dd/MM/yyyy";
 	@JsonFormat(pattern = DATE_PATTERN)
 	private LocalDate dataFattura;
 	private Long idCliente;
-	private List<String> tipoPagamento;
-	private List<String> nomeArticolo;
-	private List<Float> sconto;
+	private String numeroFattura;
+//	private List<String> tipoPagamento;
+//	private List<String> nomeArticolo;
+	private double totaleParziale;
+	private double totaleGenerale;
+	private float sconto;
 	@Enumerated(EnumType.STRING)
-	private Iva IVA;
+	private Iva ivaEnum;
+	private String IVA;
 
 	
 }

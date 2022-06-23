@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,12 +30,11 @@ public class RigaFattura {
 	@Setter(value = AccessLevel.NONE)
 	private Long id;
 	private Articolo articolo;
-	private String descrizione;
+//	private String descrizione;
 	private int quantita;
 	private double prezzoUnitario;
 	private float sconto;
-	private double importo;
-	private Iva IVA;
+	private double importoTotale;
 	@ManyToOne
 	@JoinColumn(name = "id_fattura", referencedColumnName = "id")
 	private Fattura fatture;

@@ -2,8 +2,8 @@ package it.project.invoice.model;
 
 public enum Iva {
 	ESENTE("esente",0),
-	RIDOTTA("ridotta 4%",4),
-	RIDOTTA2("ridotta 10%",10),
+//	RIDOTTA("ridotta 4%",4),
+	RIDOTTA("ridotta 10%",10),
 	ORDINARIA("ordinaria 22%",22);
 	
 	private String messaggio;
