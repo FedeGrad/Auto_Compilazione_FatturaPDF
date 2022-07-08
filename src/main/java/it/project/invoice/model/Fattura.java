@@ -43,7 +43,7 @@ public class Fattura {
 	@ManyToOne
 	@JoinColumn(name = "id_pagamento", referencedColumnName = "id")
 	private TipoDiPagamento pagamento;
-	@OneToMany(mappedBy = "fattura",cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@OneToMany(mappedBy = "fattura", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private List<RigaFattura> rigaFattura = new ArrayList<RigaFattura>();
 	
 }

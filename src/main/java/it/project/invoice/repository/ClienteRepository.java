@@ -11,11 +11,10 @@ import it.project.invoice.model.Cliente;
 
 public interface ClienteRepository extends CrudRepository<Cliente, Long> {
 	
-	public boolean existsByCf(String cf);
 	public boolean existsByCognome(String cognome);
-	public List<Cliente> findByCitta(Citta citta);
-	public List<Cliente> findByCf(String cf);
 	public List<Cliente> findByCognome(String cognome);
-	public Long deleteByCf(String cf);
+//	public Cliente findByPIVA(String pIVA);
+//	public boolean existsByPIVA(String pIVA);
+//	public Long deleteByPIVA(String pIVA);
 	
 }

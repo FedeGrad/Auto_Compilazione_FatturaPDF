@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.project.invoice.dto.RigaFatturaDTO;
-import it.project.invoice.exception.ElementAlreadyPresentException;
-import it.project.invoice.exception.NotFoundException;
 import it.project.invoice.model.Articolo;
 import it.project.invoice.model.Fattura;
 import it.project.invoice.model.Iva;
@@ -32,7 +30,7 @@ public class RigaFatturaService {
 	TipoDiPagamentoRepository tipoPagamRepo;
 	
 
-	public RigaFattura associaRigheFattura(RigaFatturaDTO dto) throws NotFoundException {
+	public RigaFattura associaRigheFattura(RigaFatturaDTO dto) throws Exception {
 		RigaFattura newRiga = new RigaFattura();
 		BeanUtils.copyProperties(dto, newRiga);
 		Articolo articolo = articoloRepo.findByNome(dto.getNomeArticolo());

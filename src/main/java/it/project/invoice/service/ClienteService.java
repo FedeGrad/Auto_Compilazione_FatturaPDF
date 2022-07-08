@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import it.project.invoice.dto.ClienteDTO;
 import it.project.invoice.dto.ClienteUpdateDTO;
-import it.project.invoice.exception.ElementAlreadyPresentException;
-import it.project.invoice.exception.NotFoundException;
 import it.project.invoice.model.Citta;
 import it.project.invoice.model.Cliente;
 import it.project.invoice.repository.CittaRepository;
@@ -29,9 +27,9 @@ public class ClienteService {
 	@Autowired
 	CittaService cittaServ;
 
-	public void inserisciCliente(ClienteDTO dto) throws ElementAlreadyPresentException, NotFoundException {
+	public void inserisciCliente(ClienteDTO dto) throws Exception {
 		Cliente cliente = new Cliente();
-		if (!clienteRepo.existsByCf(dto.getCf())) {
+		if (!clienteRepo.existsByCognome(dto.getCognome())) {
 			BeanUtils.copyProperties(dto, cliente);
 			clienteRepo.save(cliente);
 			log.info("Il Cliente " + cliente.getNome() + " " + cliente.getCognome() + " è stato salvato");
@@ -43,12 +41,12 @@ public class ClienteService {
 //			}
 			clienteRepo.save(cliente);
 		} else {
-			throw new ElementAlreadyPresentException(
+			throw new Exception(
 					"Il Cliente " + cliente.getNome() + " " + cliente.getCognome() + " è già presente nel sistema");
 		}
 	}
 
-	public void modificaCliente(ClienteUpdateDTO dto) throws ElementAlreadyPresentException, NotFoundException {
+	public void modificaCliente(ClienteUpdateDTO dto) throws Exception {
 		if (clienteRepo.existsById(dto.getId_cliente())) {
 			Cliente cliente = clienteRepo.findById(dto.getId_cliente()).get();
 			BeanUtils.copyProperties(dto, cliente);
@@ -62,17 +60,17 @@ public class ClienteService {
 //			}
 			clienteRepo.save(cliente);
 		} else {
-			throw new NotFoundException("Il cliente con l'id " + dto.getId_cliente() + " non è presente nel sistema");
+			throw new Exception("Il cliente con l'id " + dto.getId_cliente() + " non è presente nel sistema");
 		}
 	}
 
-	public void eliminaCliente(Long id) throws NotFoundException {
+	public void eliminaCliente(Long id) throws Exception {
 		if (clienteRepo.existsById(id)) {
 			Cliente cli = clienteRepo.findById(id).get();
 			log.info("Il cliente" + cli.getCognome() + " è stato eliminato");
 			clienteRepo.deleteById(id);
 		} else {
-			throw new NotFoundException("Il Cliente con l'id " + id + " non presente nel sistema");
+			throw new Exception("Il Cliente con l'id " + id + " non presente nel sistema");
 		}
 	}
 

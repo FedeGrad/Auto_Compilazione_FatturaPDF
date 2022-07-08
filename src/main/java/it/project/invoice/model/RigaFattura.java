@@ -29,6 +29,8 @@ public class RigaFattura {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(value = AccessLevel.NONE)
 	private Long id;
+	@ManyToOne
+	@JoinColumn(name = "id_articolo")
 	private Articolo articolo;
 //	private String descrizione;
 	private int quantita;
@@ -37,7 +39,7 @@ public class RigaFattura {
 	private double importoTotale;
 	@ManyToOne
 	@JoinColumn(name = "id_fattura", referencedColumnName = "id")
-	private Fattura fatture;
+	private Fattura fattura;
 	
 
 

@@ -20,9 +20,12 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.toedter.calendar.JDateChooser;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import it.project.invoice.dto.FatturaDTO;
 import it.project.invoice.dto.RigaFatturaDTO;
+import it.project.invoice.model.Articolo;
 import it.project.invoice.model.Citta;
 import it.project.invoice.model.Cliente;
 import it.project.invoice.model.Fattura;
@@ -44,6 +47,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -246,6 +251,7 @@ public class PdfGenerator extends JFrame implements ActionListener {
 		frame.getContentPane().add(lblTotParz);
 
 		prezzoUnitario = new JTextField();
+		prezzoUnitario.setEditable(false);
 		prezzoUnitario.setBounds(337, 258, 100, 26);
 		frame.getContentPane().add(prezzoUnitario);
 		prezzoUnitario.addKeyListener(new KeyListener() {
@@ -313,6 +319,7 @@ public class PdfGenerator extends JFrame implements ActionListener {
 		pIva = new JTextField();
 		pIva.setDocument(new LimitJTextField(11)); // la cella può contenere al massimo 11 caratteri
 		pIva.addKeyListener(new KeyAdapter() {
+			
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -348,6 +355,7 @@ public class PdfGenerator extends JFrame implements ActionListener {
 
 		cap = new JTextField();
 		cap.setDocument(new LimitJTextField(5)); // la cella può contenere al massimo 5 caratteri
+		
 		cap.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -369,6 +377,12 @@ public class PdfGenerator extends JFrame implements ActionListener {
 		// sostituire con l'elenco di prodotti nel DB e effettuare gli appositi
 		// controlli
 		String[] items = { "- seleziona oggetto", "Oggetto 1", "Oggetto 2", "Oggetto 3", "Oggetto 4" };
+//		List<Articolo> articoli = articoloRepo.findAll();
+//		String[] nomiItems = null;
+//		for (int i = 0; i < articoli.size(); i++) {
+//			nomiItems[i] = articoli.get(i).getNome();
+//		}
+		// JComboBox comboBox = new JComboBox(nomiItems);
 		JComboBox comboBox = new JComboBox(items);
 		comboBox.setBounds(159, 232, 178, 27);
 		frame.getContentPane().add(comboBox);
@@ -376,6 +390,7 @@ public class PdfGenerator extends JFrame implements ActionListener {
 		// sostituire con l'elenco di prodotti nel DB e effettuare gli appositi
 		// controlli
 		String[] items2 = { "- seleziona servizio", "Servizio 1", "Servizio 2" };
+		@SuppressWarnings("unchecked")
 		JComboBox comboBox_1 = new JComboBox(items2);
 		comboBox_1.setVisible(false);
 		comboBox_1.setBounds(159, 292, 178, 27);
@@ -401,6 +416,7 @@ public class PdfGenerator extends JFrame implements ActionListener {
 		frame.getContentPane().add(lblImpUnitario_1);
 
 		prezzoUnitario2 = new JTextField();
+		prezzoUnitario2.setEditable(false);
 		prezzoUnitario2.setVisible(false);
 		prezzoUnitario2.setBounds(337, 318, 100, 26);
 		frame.getContentPane().add(prezzoUnitario2);
@@ -680,37 +696,47 @@ public class PdfGenerator extends JFrame implements ActionListener {
 						Map<String, PdfFormField> fields = form.getFormFields();
 						FatturaDTO newFattura = new FatturaDTO();
 						Cliente newCliente = new Cliente();
+
 						fields.get("nr_fattura").setValue(NumFattura.getText());
-						// newFattura.setNumeroFattura();
 						fields.get("data_fattura").setValue(data);
-						// newFattura.setDataFattura();
+						newFattura.setNumeroFattura(NumFattura.getText());
+						newFattura.setDataFattura(LocalDate.parse(data));
 
 						fields.get("cliente").setValue(ragioneSociale.getText());
-						// newCliente.setNome();
 						fields.get("piva").setValue(pIva.getText());
-						// newCliente.setPIVA();
 						fields.get("indirizzo").setValue(Indirizzo.getText());
-						// newCliente.setIndirizzo();
 						fields.get("civico").setValue(civico.getText());
-						// newCliente.setCivico();
+						newCliente.setNome(ragioneSociale.getText());
+						newCliente.setPIVA(pIva.getText());
+						newCliente.setIndirizzo(Indirizzo.getText());
+						newCliente.setCivico(civico.getText());
 
 						fields.get("CAP").setValue(cap.getText());
 						fields.get("citta").setValue(citta.getText());
 						fields.get("prov").setValue(prov.getText());
-						// Citta cittaTrov = cittaRepo.findByNome();
-						// newCliente.setCitta(cittaTrov);
+						Citta cittaTrov = cittaRepo.findByNome(citta.getText());
+						newCliente.setCitta(cittaTrov);
 
 						// fields.get("id").setValue(XXXX.getText());
 						RigaFatturaDTO riga1 = new RigaFatturaDTO();
 						fields.get("descrizione").setValue((String) comboBox.getSelectedItem());
 						fields.get("quantita").setValue(quantita.getText());
+						Articolo art1 = articoloRepo.findByNome((String) comboBox.getSelectedItem());
 						fields.get("prezzo_unitario").setValue(prezzoUnitario.getText());
+						// fields.get("prezzo_unitario").setValue(Double.toString(art1.getImporto()));
 						fields.get("prezzo_parziale").setValue(parzialeSingolo.getText());
-						// riga1.setNomeArticolo();
-						// riga1.setQuantita();
-						// riga1.setPrezzoUnitario();
-						// riga1.setImportoParziale();
-						// RigaFattura rigaUNO = rigaFattServ.associaRigheFattura(riga1);
+						riga1.setNomeArticolo((String) comboBox.getSelectedItem());
+						riga1.setQuantita(Integer.parseInt(quantita.getText()));
+						riga1.setPrezzoUnitario(art1.getImporto());
+						 riga1.setImportoParziale(Double.parseDouble(parzialeSingolo.getText()));
+						 RigaFattura rigaUNO = null;
+						try {
+							rigaUNO = rigaFattServ.associaRigheFattura(riga1);
+						} catch (Exception e1) {
+
+							
+							e1.printStackTrace();
+						}
 
 						// fields.get("id1").setValue(XXXX.getText());
 						RigaFatturaDTO riga2 = new RigaFatturaDTO();
@@ -722,7 +748,12 @@ public class PdfGenerator extends JFrame implements ActionListener {
 						// riga2.setQuantita();
 						// riga2.setPrezzoUnitario();
 						// riga2.setImportoParziale();
-						// RigaFattura rigaDUE = rigaFattServ.associaRigheFattura(riga2);
+						RigaFattura rigaDUE = null;
+						try {
+							rigaDUE = rigaFattServ.associaRigheFattura(riga2);
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
 
 						// field.get all prize and IVA
 						fields.get("totale_parziale").setValue(totaleParziale.getText());
@@ -738,7 +769,11 @@ public class PdfGenerator extends JFrame implements ActionListener {
 						form.flattenFields();
 						pdf.close();
 
-						// fatturaServ.inserisciFattura(newFattura, rigaUNO, rigaDUE);
+						try {
+							fatturaServ.inserisciFattura(newFattura, rigaUNO, rigaDUE);
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
 					}
 				}
 			}

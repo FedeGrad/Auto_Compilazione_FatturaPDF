@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.project.invoice.dto.FatturaDTO;
-import it.project.invoice.exception.ElementAlreadyPresentException;
-import it.project.invoice.exception.NotFoundException;
 import it.project.invoice.model.Fattura;
 import it.project.invoice.model.Iva;
 import it.project.invoice.model.RigaFattura;
@@ -42,7 +40,7 @@ public class FatturaService {
 //		return fattureOttenute;
 //	}
 
-	public void inserisciFattura(FatturaDTO dto, RigaFattura...righe) throws ElementAlreadyPresentException, NotFoundException {
+	public void inserisciFattura(FatturaDTO dto, RigaFattura...righe) throws Exception{
 		Fattura fattura = new Fattura();
 		BeanUtils.copyProperties(dto, fattura);
 //		RigaFattura riga = new RigaFattura();
@@ -58,7 +56,7 @@ public class FatturaService {
 				fattura.setIVA(Iva.ORDINARIA);
 				break;
 			default:
-				throw new NotFoundException("IVA errata");
+				throw new Exception("IVA errata");
 		}
 		for (RigaFattura rigaFattura : righe) {
 			fattura.getRigaFattura().add(rigaFattura);
